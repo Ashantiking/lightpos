@@ -1,0 +1,63 @@
+{% extends 'base.html' %}
+{% load static %}
+{% block title %}
+		 About Acheampong Inc.
+		{% endblock  %}
+
+	
+	
+		{% block content %}
+<!-- [ Main Content ] start -->
+<div class="pcoded-main-container">
+	<div class="pcoded-content">
+		<!-- [ breadcrumb ] start -->
+		<div class="page-header">
+			<div class="page-block">
+				<div class="row align-items-center">
+					<div class="col-md-12">
+						<div class="page-header-title">
+							<h5 class="m-b-10">Slider</h5>
+						</div>
+						<ul class="breadcrumb">
+							<li class="breadcrumb-item"><a href="index.html"><i class="feather icon-home"></i></a></li>
+							<li class="breadcrumb-item"><a href="#!">Basic Components</a></li>
+							<li class="breadcrumb-item"><a href="#!">Slider</a></li>
+						</ul>
+					</div>
+				</div>
+			</div>
+		</div>       
+    <section>
+
+	<div class="card">
+        <div class="card-body">
+            <div class="section-title text-center">
+                
+                <h3>SUPPLIER SECTION</h3>
+                <p>You can add A Supplier</p>
+            </div>
+				{% if user.is_authenticated %}
+                
+			<div class="from-group">
+            <form method="POST">
+                {%csrf_token %}
+                {{ form.as_p }}
+                <button  class="btn btn-primary">Add A Supplier</button>
+            </form>
+		</div>
+        <div class="btn-ber text-center">
+            <a class="learn_btn hvr-bounce-to-top" href="{% url 'supplier' %}">Back Home</a>
+          </div>
+    </div>
+</div>
+
+
+</div>
+</div>
+{% else %}
+<h3>You are not Login or Register </h3>
+<p>Please Login or Registrar </p>
+{% endif %}
+ 
+</section>
+{% endblock %}

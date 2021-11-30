@@ -1,0 +1,676 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0">
+    <meta name="description" content="">
+    <meta name="author" content="">
+    <link href="{% static 'pos/images/favicon.png'%}" rel="shortcut icon" type="image/png">  
+  
+    <title>AcheampongPOS™</title>
+  
+  <!--  <link rel="stylesheet" href="../lib/Hover/hover.css">-->
+  <!--New-->
+  <link href="{% static 'pos/lib/jquery-ui/jquery-ui.css'%}" rel="stylesheet">
+  <link href="{% static 'pos/lib/select2/select2.css'%}" rel="stylesheet">
+  <!--New-->
+    <link href="{% static 'pos/lib/fontawesome/css/font-awesome.css'%}" rel="stylesheet">
+    <link href="{% static 'pos/lib/weather-icons/css/weather-icons.css'%}" rel="stylesheet">
+    <link href="{% static 'pos/lib/ionicons/css/ionicons.css'%}" rel="stylesheet">
+    <link href="{% static 'pos/lib/jquery-toggles/toggles-full.css'%}" rel="stylesheet">
+    <link href="{% static 'pos/lib/datatables-plugins/integration/bootstrap/3/dataTables.bootstrap.css'%}" rel="stylesheet">
+  <!--  <link rel="stylesheet" href="../lib/morrisjs/morris.css">-->
+  
+    <link href="{% static 'pos/css/quirk.css'%}" rel="stylesheet">
+  
+  <!--  <script src="../lib/modernizr/modernizr.js"></script>-->
+  <!--  <script src="../lib/jquery/jquery.js"></script>-->
+  
+  </head>
+  
+  <body>
+  
+  <header>
+    <div class="headerpanel">
+  
+      <div class="logopanel">
+          <h1><a href="./?lnk=home">Acheampong</a></h1>
+  <!--        <h2><a href="./?lnk=home"><img height="55" src="images/cdllogo.png" /></a></h2>-->
+      </div><!-- logopanel -->
+  
+      <div class="headerbar">
+  
+        <a class="menutoggle" id="menuToggle"><i class="fa fa-bars"></i></a>
+  
+  
+        <div class="header-right">
+            <ul class="headermenu">
+              <li>
+                <div class="btn-group" id="noticePanel">
+                  <button class="btn btn-notice alert-notice" data-toggle="dropdown">
+                    <i class="fa fa-globe"></i>
+                  </button>
+                  <div class="dropdown-menu dm-notice pull-right" id="noticeDropdown">
+                    <div role="tabpanel">
+                      <!-- Nav tabs -->
+                      <ul class="nav nav-tabs nav-justified" role="tablist">
+                        <li class="active"><a data-toggle="tab" data-target="#notification">Draft Sales (1)</a></li>
+                        <li><a data-toggle="tab" data-target="#reminders">Today's Sales ()</a></li>
+                      </ul>
+  
+                      <!-- Tab panes -->
+                      <div class="tab-content">
+                        <div class="tab-pane active" id="notification" role="tabpanel">
+                          <ul class="list-group notice-list">
+                                                        <li class="list-group-item unread">
+                              <div class="row">
+                                <div class="col-xs-2">
+                                  <i class="fa fa-edit"></i>
+                                </div>
+                                <div class="col-xs-10">
+                                  <h5><a href="./?lnk=server_pos&amp;rno=POS-1631101167&amp;which=new">POS-1631101167</a></h5>
+                                  <small>2021-09-08 12:26:14</small>
+                                </div>
+                              </div>
+                            </li>
+                                                     
+                          </ul>
+                          <a class="btn-more" href="./?lnk=server_sales_draft">View More Sales' Drafts <i class="fa fa-long-arrow-right"></i></a>
+                        </div><!-- tab-pane -->
+  
+                        <div class="tab-pane" id="reminders" role="tabpanel">
+                          <h1 class="today-day" id="todayDay">Wednesday</h1>
+                          <h3 class="today-date" id="todayDate">8th September 2021</h3>
+  
+                          <h5 class="today-weather"><i class="wi wi-hail"></i> ezzzyPOS</h5>
+                          <p>...the easy way to sell stuff</p>
+  
+                          <h4 class="panel-title">Latest Sales</h4>
+                          <ul class="list-group">
+                                                        <li class="list-group-item">
+                              <div class="row">
+                                <div class="col-xs-2">
+                                  <h4></h4>
+                                  <p></p>
+                                </div>
+                                <div class="col-xs-10">
+                                  <h5><a href="#"></a></h5>
+                                  <small></small>
+                                </div>
+                              </div>
+                            </li>
+                                                       </ul>
+                          <a class="btn-more" href="./?lnk=server_sales_inventory">View all sales <i class="fa fa-long-arrow-right"></i></a>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </li>
+              <li>
+                <div class="btn-group">
+                  <button class="btn btn-logged" type="button" data-toggle="dropdown">
+                    <img alt="" src="{% static 'pos/images/photos/loggeduser.png'%}">
+                    usman                  <span class="caret"></span>
+                  </button>
+                  <ul class="dropdown-menu pull-right">
+                    <li><a href="#" data-toggle="modal" data-target="#myModalChangePassword"><i class="glyphicon glyphicon-lock"></i> Change Password</a></li>
+  <!--                  <li><a href="#"><i class="glyphicon glyphicon-cog"></i> Account Settings</a></li>-->
+  <!--                  <li><a href="#"><i class="glyphicon glyphicon-question-sign"></i> Help</a></li>-->
+                    <li><a href="./?lnk=logout"><i class="glyphicon glyphicon-log-out"></i> Log Out</a></li>
+                  </ul>
+                </div>
+              </li>
+            </ul>
+          </div><!-- header-right -->
+        </div><!-- headerbar -->
+      </div><!-- header-->
+  </header>
+  
+  <section>
+  
+    <div class="leftpanel">
+      <div class="leftpanelinner">
+  
+        <!-- ################## LEFT PANEL PROFILE ################## -->
+  
+        <div class="media leftpanel-profile">
+          <div class="media-left">
+            <a href="#">
+              <img class="media-object img-circle" alt="" src="{% static 'pos/images/photos/loggeduser.png'%}">
+            </a>
+          </div>
+          <div class="media-body">
+            <h4 class="media-heading">usman <a class="pull-right" data-toggle="collapse" data-target="#loguserinfo"><i class="fa fa-angle-down"></i></a></h4>
+            <span>subadmin</span>
+          </div>
+        </div><!-- leftpanel-profile -->
+  
+        <div class="leftpanel-userinfo collapse" id="loguserinfo">        
+          <h5 class="sidebar-title">Contact</h5>
+          <ul class="list-group">
+            <li class="list-group-item">
+              <label class="pull-left">Las Login</label>
+              <span class="pull-right"></span>
+            </li>
+            <li class="list-group-item">
+              <label class="pull-left">Mobile</label>
+              <span class="pull-right"></span>
+            </li>
+            <li class="list-group-item">
+              <label class="pull-left">Social</label>
+              <div class="social-icons pull-right">
+                <a href="#"><i class="fa fa-facebook-official"></i></a>
+                <a href="#"><i class="fa fa-twitter"></i></a>
+                <a href="#"><i class="fa fa-pinterest"></i></a>
+              </div>
+            </li>
+          </ul>
+        </div><!-- leftpanel-userinfo -->
+  
+        <ul class="nav nav-tabs nav-justified nav-sidebar">
+          <li title="" class="tooltips active" data-original-title="Main Menu" data-toggle="tooltip"><a data-toggle="tab" data-target="#mainmenu"><i title="" class="tooltips fa fa-ellipsis-h" data-original-title=""></i></a></li>
+          <li title="" class="tooltips <?php// if($dmail_count>0) { ?>unread<?php// } ?>" data-original-title="Check Mail" data-toggle="tooltip"><a data-toggle="tab" data-target="#emailmenu"><i title="" class="tooltips fa fa-envelope" data-original-title=""></i></a></li>
+          <li title="" class="tooltips" data-original-title="Settings" data-toggle="tooltip"><a data-toggle="tab" data-target="#settings"><i class="fa fa-cog"></i></a></li>
+          <li title="" class="tooltips" data-original-title="Log Out" data-toggle="tooltip"><a href="logout.php"><i class="fa fa-sign-out"></i></a></li>
+        </ul><div class="tab-content">
+  
+          <!-- ################# MAIN MENU ################### -->
+  
+          <div class="tab-pane active" id="mainmenu">
+            <h5 class="sidebar-title">Favorites</h5>
+            <ul class="nav nav-pills nav-stacked nav-quirk">
+              <li class="active"><a href="./?lnk=home"><i class="fa fa-home"></i> <span>Dashboard</span></a></li>
+              <li><a href="./?lnk=server_pos&amp;rno=POS-1631104032&amp;which=new"><i class="fa fa-paypal"></i> <span>POS</span></a></li>
+              <li><a href="./?lnk=server_expire"><i class="fa fa-exclamation-circle"></i> <span>Expire Soon</span></a></li>
+              <li><a href="./?lnk=server_stocks&amp;queryy=lowcount"><i class="fa fa-exclamation-circle"></i> <span>Low Stock</span></a></li>
+            </ul>
+  
+            <h5 class="sidebar-title">Main Menu</h5>
+            <ul class="nav nav-pills nav-stacked nav-quirk">
+              <li class="nav-parent ">
+                <a href="#"><i class="icon ion-person-stalker"></i> <span>User Management</span></a>
+                <ul class="children">
+                  <li><a href="./?lnk=dir_staff">Staff Directory</a></li>
+                  <li><a href="./?lnk=dir_customer">Customers Directory</a></li>
+                </ul>
+              </li>
+              <li class="nav-parent ">
+                <a href=" {% url 'supplier' %} "><i class="fa fa-check-square"></i> <span>Supplier Manager</span></a>
+                <ul class="children">
+                    <li><a href=" {% url 'supplier' %} ">Suppliers</a></li>
+                </ul>
+              </li>
+              <li class="nav-parent active">
+                <a href="#"><i class="fa fa-database"></i> <span>Warehouse Manager</span></a>
+                <ul class="children">
+                    <li class="active"><a href="./?lnk=server_purchase">Purchases</a></li>
+                    <li class="active"><a href="./?lnk=server_supplier_order">Warehouse Stocks Count</a></li>
+                    <li><a href="./?lnk=server_order_transfer">Transfer Orders</a></li>
+                    <li><a href="./?lnk=server_giveout">Giveout Records</a></li>
+                </ul>
+              </li>
+              <li class="nav-parent ">
+                <a href="#"><i class="fa fa-cart-plus"></i> <span>Sales Management</span></a>
+                <ul class="children">
+                    <li><a href="./?lnk=server_pos&amp;rno=POS-1631104032&amp;which=new">POS</a></li>
+                    <li><a href="./?lnk=server_sales_today&amp;my=6">My Sales</a></li>
+                    <li><a href="./?lnk=server_sales_today">Today's Sales</a></li>
+                    <li><a href="./?lnk=server_sales_inventory">Sales Inventory</a></li>
+                    <li><a href="./?lnk=server_sales_draft">Draft Sales</a></li>
+                    <li><a href="./?lnk=server_sale_return">Sale Return</a></li>
+                    <li><a href="./?lnk=server_amper">Hamper Prices</a></li>
+                </ul>
+              </li>
+              <li class="nav-parent "><a href="#"><i class="fa fa-book"></i> <span>Products ManageR</span></a>
+                <ul class="children">
+                  <li><a href="./?lnk=server_product">Product Categories</a></li>
+                  <li><a href="./?lnk=server_prods">Products</a></li>
+                  <li><a href="./?lnk=server_stocks">Stocks Records</a></li>
+                  <!--<li class=""><a href="./?lnk=server_stocks_adj">Stocks Adjustment</a></li>-->
+                </ul>
+              </li>
+              
+              <li class="nav-parent "><a href="#"><i class="fa fa-money"></i> <span>Income &amp; Expenses</span></a>
+                <ul class="children">
+                  <li><a href="./?lnk=server_subhead">Subhead</a></li>
+                  <li><a href="./?lnk=server_expenditure">Expenditures</a></li>
+                  <li><a href="./?lnk=server_income">Income</a></li>
+                  <li><a href="./?lnk=server_post2bank">Post 2 Bank</a></li>
+                </ul>
+              </li>
+              <li class="nav-parent "><a href="#"> <i class="fa fa-plus-circle"></i> <i class="fa fa-lock"></i><span>ROLES MANAGEMENT</span></a>
+                <ul class="children">
+                  <li><a href="./?lnk=sys_mroles">Manage Roles</a></li>
+                  <li><a href="#">Assign Roles</a></li>
+                </ul>
+              </li>
+              <li class="nav-parent "><a href="#"><i class="fa fa-print"></i> <span>Reports</span></a>
+                <ul class="children">
+                  <li><a href="./?lnk=report_sales">Sales Report</a></li>
+                  <li><a href="./?lnk=report_sales_summary">Sales Summary Report</a></li>
+                  <li><a href="./?lnk=report_sales_dept">Credit (Debt) Sales</a></li>
+                  <li><a href="./?lnk=report_register">Cash Register</a></li>
+                  <li><a href="./?lnk=report_debtors">Debtors</a></li>
+                  <li><a href="./?lnk=report_expense">Expenses Report</a></li>
+                  <li><a href="./?lnk=report_income">Income Report</a></li>
+                  <li><a href="./?lnk=report_bank">Bank Report</a></li>
+                  <li><a href="./reports/profitloss.php" target="_pl">Profit &amp; Loss</a></li>
+                </ul>
+              </li>
+            </ul>
+          </div><!-- tab-pane -->
+  
+          <!-- ######################## EMAIL MENU ##################### -->
+  
+          <div class="tab-pane" id="emailmenu">
+            <div class="sidebar-btn-wrapper">
+                <a class="btn btn-danger btn-block" href="./?lnk=server_pos&amp;rno=POS-1631104032&amp;which=new" "="">AcheampongPOS</a>
+            </div>
+  
+            <!--<h5 class="sidebar-title">Mailboxes</h5>
+            <ul class="nav nav-pills nav-stacked nav-quirk nav-mail">
+              <li><a href="email.html"><i class="fa fa-inbox"></i> <span>Inbox (3)</span></a></li>
+              <li><a href="email.html"><i class="fa fa-pencil"></i> <span>Draft (2)</span></a></li>
+              <li><a href="email.html"><i class="fa fa-paper-plane"></i> <span>Sent</span></a></li>
+            </ul>-->
+          </div><!-- tab-pane -->
+  
+          <!-- ################### CONTACT LIST ################### -->
+  
+          <div class="tab-pane" id="contactmenu">
+            <div class="input-group input-search-contact">
+              <input class="form-control" type="text" placeholder="Search contact">
+              <span class="input-group-btn">
+                <button class="btn btn-default" type="button"><i class="fa fa-search"></i></button>
+              </span>
+            </div>
+            <h5 class="sidebar-title">My Contacts</h5>
+            <ul class="media-list media-list-contacts">
+              <li class="media">
+                <a href="#">
+                  <div class="media-left">
+                      <img class="media-object img-circle" alt="" src="{% static 'pos/images/photos/user1.png'%}">
+                  </div>
+                  <div class="media-body">
+                    <h4 class="media-heading">usman</h4>
+                    <span><i class="fa fa-phone"></i> </span>
+                  </div>
+                </a>
+              </li>
+              <li class="media">
+                <a href="#">
+                  <div class="media-left">
+                    <img class="media-object img-circle" alt="" src="{% static 'pos/images/photos/user2.png'%}">
+                  </div>
+                  <div class="media-body">
+                    <h4 class="media-heading">Acheampong</h4>
+                    <span><i class="fa fa-mobile"></i> +234 8064980757</span>
+                  </div>
+                </a>
+              </li>
+              
+            </ul>
+          </div><!-- tab-pane -->
+  
+          <!-- #################### SETTINGS ################### -->
+  
+          <div class="tab-pane" id="settings">
+              <div class="sidebar-btn-wrapper">
+                  <button class="btn btn-danger btn-block" data-toggle="modal" data-target="#myModalSett">CURRENT SETTINGS</button>
+              </div>
+              <center>Acheampong</center>
+              <hr>
+  
+              <!--<h5 class="sidebar-title">Working Parameters</h5>
+              <ul class="nav nav-pills nav-stacked nav-quirk nav-mail">
+                  <li><a href="sett_sections.php"><i class="fa fa-gear"></i> Sections (2)</a></li>
+                  <li><a href="sett_classes.php"><i class="fa fa-gear"></i> Classes (6)</a></li>
+                  <li><a href="sett_time_table.php"><i class="fa fa-gear"></i> Time Table</a></li>
+              </ul>-->
+          </div><!-- tab-pane -->
+  
+  
+  
+        </div><!-- tab-content -->
+  
+  
+  </div><!-- leftpanelinner -->
+  </div><!-- leftpanel -->
+  
+  <div class="mainpanel">
+  
+      <!--<div class="pageheader">
+        <h2><i class="fa fa-home"></i> Dashboard</h2>
+      </div>-->
+  
+      <div class="contentpanel">
+  
+          <div class="row">
+              <div class="col-md-12 col-lg-12 dash-left">
+                  <!--This is the beginning of my main contents-->
+                  <div class="row">
+                      <div class="panel panel-inverse panel-site-traffic">
+                          <div class="panel-heading">
+                              <h4 class="panel-title"> MANAGE PURCHASES ()</h4>
+                          </div>
+  
+                          <div class="panel-body">
+                              <font color="#990000">This option helps you create/manage new product for </font><br><br>
+                              <strong></strong>
+
+                              <form method="POST">
+                                {%csrf_token %}
+                                {{ form.as_p }}
+                                <br>
+                                <br>
+                                <button class="btn btn-primary hvr-bounce-to-top">+ADD</button>
+                            </form>
+
+
+
+
+
+                              <hr>
+                              <hr>
+                              <form action="#" method="post">
+                                  <center>
+                                      <strong>
+                                          From : <input name="d1" class="tcal" style="padding: 14px; width: 223px;" type="date" value=""> To: <input name="d2" class="tcal" style="padding: 14px; width: 223px;" type="date" value="">
+                                          <button name="searchr" class="btn btn-info" style="width: 123px; height: 35px; margin-top: -8px; margin-left: 8px;" type="submit"><i class="fa fa-search icon-large"></i> Search</button>
+                                      </strong>
+                                  </center>
+                              </form>
+                              <hr>
+                              <hr>
+                              <form id="spurchase" action="#" method="post">
+                                  <center>
+                                      <strong>
+                                          <select name="id" tabindex="-1" class="form-control select2-hidden-accessible" id="select1" aria-hidden="true" onchange="document.getElementById('spurchase').submit()">
+                                                  <option value="">--Select One--</option>
+                                                                                                 
+                                                                                              </select><span class="select2 select2-container select2-container--default" style="width: 1070px;" dir="ltr"><span class="selection"><span tabindex="0" class="select2-selection select2-selection--single" role="combobox" aria-expanded="false" aria-haspopup="true" aria-labelledby="select2-select1-container" aria-autocomplete="list"><span title="--Select One--" class="select2-selection__rendered" id="select2-select1-container">--Select One--</span><span class="select2-selection__arrow" role="presentation"><b role="presentation"></b></span></span></span><span class="dropdown-wrapper" aria-hidden="true"></span></span>
+                                      </strong>
+                                  </center>
+                              </form>
+                              <hr>
+                              <div tabindex="-1" class="modal bounceIn animated" id="myModalPurchaseEdit6711" role="dialog" aria-hidden="true" aria-labelledby="myModalLabel">
+          <input name="rec" type="hidden" value="6711">
+          <input name="saddr" type="hidden" value="/ezzzyPOS/main/?lnk=server_purchase">
+          <div class="modal-dialog">
+              <div class="modal-content">
+                  <div class="modal-header">
+                      <button class="close" aria-hidden="true" type="button" data-dismiss="modal">×</button>
+                      <h4 class="modal-title" id="myModalLabel">Edit Purchase for (SEA SWEET BAKERY on 2021-09-08)</h4>
+                  </div>
+                  <div class="modal-body2">
+  
+                      <b></b>
+  
+                      <div class="row">
+                          <div class="form-group">
+                              <label class="col-sm-3 control-label">Choose Supplier <span class="text-danger">*</span></label>
+                              <div class="col-sm-8">
+                                  <p>
+                                      <select name="supp" class="form-control">
+                                          
+
+
+
+
+
+
+
+                                                                              </select>
+                                  </p>
+                              </div>
+                          </div>
+                      </div>
+                      
+                      <div class="row">
+                          <div class="form-group">
+                              <label class="col-sm-3 control-label">Order/Receipt No <span class="text-danger">*</span></label>
+                              <div class="col-sm-8">
+                                  <p><input name="dinvno" class="form-control" required="" type="text" placeholder="Order No..." value="{{purchase.order_id}} "></p>
+                              </div>
+                          </div>
+                      </div>
+                      
+                      <div class="row">
+                          <div class="form-group">
+                              <label class="col-sm-3 control-label">Purchase Date <span class="text-danger">*</span></label>
+                              <div class="col-sm-8">
+                                  <p><input name="pdate" class="form-control" required="" type="date" placeholder="Purchase Date..." value="{{ purchase.order_id }} "></p>
+                              </div>
+                          </div>
+                      </div>
+  
+                      <div class="row">
+                          <div class="form-group">
+                              <label class="col-sm-3 control-label">Total Amount <span class="text-danger">*</span></label>
+                              <div class="col-sm-8">
+                                  <p><input name="tamt" class="form-control" required="" type="text" placeholder="Total Amount..." value="{{ purchase.amount_order }}"></p>
+                              </div>
+                          </div>
+                      </div>
+  
+                      <div class="row">
+                          <div class="form-group">
+                              <label class="col-sm-3 control-label">Amount Already paid <span class="text-danger">*</span></label>
+                              <div class="col-sm-8">
+                                  <p><input name="amtp" class="form-control" required="" type="text" placeholder="Amount Paid..." value="{{ purchase.amount_paid }}"></p>
+                              </div>
+                          </div>
+                      </div>
+  
+                      <div class="row">
+                          <div class="form-group">
+                              <label class="col-sm-3 control-label">Other Notes <span class="text-danger"></span></label>
+                              <div class="col-sm-8">
+                                  <p>
+                                      <textarea name="desc" class="form-control" placeholder="Any other notes?.">Any other notes?.</textarea>
+                                  </p>
+                              </div>
+                          </div>
+                      </div>
+                      
+                  </div>
+                  <div class="modal-footer">
+                      <br>
+                      <button class="btn btn-primary" type="submit">Update Payment</button>
+                      <button class="btn btn-default" type="button" data-dismiss="modal">Cancel</button>
+                  </div>
+              </div><!-- modal-content -->
+          </div><!-- modal-dialog -->
+      </div><div tabindex="-1" class="modal bounceIn animated" id="myModalDelete6682" role="dialog" aria-hidden="true" aria-labelledby="myModalLabel">
+    <div class="modal-dialog">
+      <div class="modal-content">
+        <div class="modal-header">
+          <button class="close" aria-hidden="true" type="button" data-dismiss="modal">×</button>
+          <h4 class="modal-title" id="myModalLabel">Confirm Delete</h4>
+        </div>
+        <div class="modal-body">
+            <form name="form1" action="server_delete_things_process.php?typ=delpurchase&amp;addr=/ezzzyPOS/main/?lnk=server_purchase" method="post"></form>
+                 <input name="rec" type="hidden" value="6682">
+                 <input name="servaddr" type="hidden" value="/ezzzyPOS/main/?lnk=server_purchase">
+                 <font color="#990000">Do you really wish to delete this record? </font>
+                 <br><br>
+          <button class="btn btn-primary" type="submit">Yes Delete</button>
+          <button class="btn btn-default" type="button" data-dismiss="modal">Cancel</button>
+                 
+        </div>
+      </div><!-- modal-content -->
+    </div><!-- modal-dialog -->
+  </div><table class="table table-striped nomargin table-bordered">
+                                  <tbody><tr>
+                                      <th width="" valign="middle" bgcolor="#f0f1eb"> S/N </th>
+                                      <th width="" valign="middle" bgcolor="#f0f1eb"> DATE </th>
+                                      <th width="" valign="middle" bgcolor="#f0f1eb"> SUPPLIER </th>
+                                      <th width="" valign="middle" bgcolor="#f0f1eb"> TOTAL AMOUNT </th>
+                                      <th width="" valign="middle" bgcolor="#f0f1eb"> AMOUNT PAID </th>
+                                      <th width="" valign="middle" bgcolor="#f0f1eb"> STATUS </th>
+                                      <th width="" align="center" bgcolor="#f0f1eb">&nbsp;</th>
+                                  </tr>	
+                                  {% for post in object_list %}			
+                                  <!-- Modal -->
+  <form name="form1" action="s3" method="post"></form>
+      
+  
+  
+  <!-- modal --><!-- Modal -->
+  <form name="form1" action="" method="post"></form>
+      
+  
+  <!-- modal --><!-- Modal -->
+  <!-- modal -->                                        <tr>
+x
+                                              <td valign="middle" bgcolor="#f0f1eb"> {{ purchase.order_id }}</td>
+                                              <td valign="middle" bgcolor="#f0f1eb"> {{ purchase.date_purchase }}</td>
+                                              <td valign="middle" bgcolor="#f0f1eb"> {{ purchase.supplier }} </td>
+                                              <td valign="middle" bgcolor="#f0f1eb"> {{ purchase.amount_order }} </td>
+                                              <td valign="middle" bgcolor="#f0f1eb"> {{ purchase.amount_paid }}  </td>
+                                              <td valign="middle" bgcolor="#f0f1eb"> {{ purchase.status }} </td>
+                                              <td align="center" bgcolor="#f0f1eb">
+                                                  <div class="btn-group">
+                                                      <button class="btn btn-primary btn-sm" type="button" data-toggle="dropdown">Action</button>
+                                                      <button class="btn btn-primary btn-sm dropdown-toggle" type="button" data-toggle="dropdown">
+                                                          <span class="caret"></span>
+                                                          <span class="sr-only">Toggle Dropdown</span>
+                                                      </button>
+                                                      <ul class="dropdown-menu" role="menu">
+                                                          <li><a href="#" data-toggle="modal" data-target="#myModalPurchaseEdit6711">Edit</a></li>
+                                                          <li><a href="#" data-toggle="modal" data-target="#myModalPurchasePayUpdate6711">Update Payment</a></li>
+                                                          <li><a href="./?lnk=server_supplier_order&amp;id=6711&amp;spid=125">Orders</a></li>
+                                                          <li><a href="reports/pinvoice.php?id=6711" target="_pinvoice">Print Purchases</a></li>
+                                                          <li><a href="./?lnk=server_supplier_record&amp;id=125">Payment Register</a></li>
+                                                          <li><a href="#" data-toggle="modal" data-target="#myModalDelete6711">Delete</a></li>
+                                                      </ul>
+                                                  </div>
+                                                 
+                                              </td>
+                                          </tr>
+                              </tbody></table>
+                              {% endfor %}		
+                          </div>
+                      </div>
+                  </div>
+                  <!--/This is the ending of my main contents-->
+              </div><!-- col-md-9 -->
+          </div><!-- row -->
+  
+      </div><!-- contentpanel -->
+  
+  </div><!-- mainpanel -->
+  
+  </section>
+  
+  <!-- Modal -->
+  <script src="ezzzyajax.js" type="text/javascript"></script>
+  <form name="form1" action="sett_change_password.php?typ=new" enctype="multipart/form-data" method="post">
+      <input name="toad" type="hidden" value="add">
+      <input name="reccid" type="hidden" value="6">
+      <input name="saddr" type="hidden" value="/ezzzyPOS/main/?lnk=server_purchase">
+      <div tabindex="-1" class="modal bounceIn animated" id="myModalChangePassword" role="dialog" aria-hidden="true" aria-labelledby="myModalLabel">
+          <div class="modal-dialog">
+              <div class="modal-content">
+                  <div class="modal-header">
+                      <button class="close" aria-hidden="true" type="button" data-dismiss="modal">×</button>
+                      <h4 class="modal-title" id="myModalLabel">Change Password (usman)</h4>
+                  </div>
+                  <div class="modal-body2">
+  
+                      <b></b>
+                      <font color="#990000">This option helps you change your old password to a new one </font>
+                      <br><br>
+                      
+                      <div class="row">
+                          <div class="form-group">
+                              <label class="col-sm-3 control-label">Old Password: </label>
+                              <div class="col-sm-6">
+                                  <p>
+                                      <input name="opass" class="form-control" id="opass" required="required" type="password" placeholder="Enter old password">
+                                  </p>
+                              </div>
+                          </div>
+                      </div>
+                      
+                      <div class="row">
+                          <div class="form-group">
+                              <label class="col-sm-3 control-label">New Password: </label>
+                              <div class="col-sm-6">
+                                  <p>
+                                      <input name="npass" class="form-control" id="npass" required="required" type="password" placeholder="Enter new password">
+                                  </p>
+                              </div>
+                          </div>
+                      </div>
+                      
+                      <div class="row">
+                          <div class="form-group">
+                              <label class="col-sm-3 control-label">Confirm New Password: </label>
+                              <div class="col-sm-6">
+                                  <p>
+                                      <input name="cnpass" class="form-control" id="cnpass" required="required" type="password" placeholder="Confirm your new password">
+                                  </p>
+                              </div>
+                          </div>
+                      </div>
+                     
+                  </div>
+                  <div class="modal-footer">
+                      <br>
+                      <button name="upl" class="btn btn-primary" type="submit">Change</button>
+                      <button class="btn btn-default" type="button" data-dismiss="modal">Cancel</button>
+                  </div>
+              </div><!-- modal-content -->
+          </div><!-- modal-dialog -->
+      </div>
+  </form>
+  
+  <!-- modal --><script src="{% static 'pos/lib/jquery/jquery.js'%}"></script>
+  <script src="{% static 'pos/lib/jquery-ui/jquery-ui.js'%}"></script>
+  <script src="{% static 'pos/lib/bootstrap/js/bootstrap.js'%}"></script>
+  <script src="{% static 'pos/lib/jquery-toggles/toggles.js'%}"></script>
+  <!--New-->
+  <script src="{% static 'pos/lib/select2/select2.js'%}"></script>
+  <script src="{% static 'pos/lib/datatables/jquery.dataTables.js'%}"></script>
+  <script src="{% static 'pos/lib/datatables-plugins/integration/bootstrap/3/dataTables.bootstrap.js'%}"></script>
+  <!--New-->
+  <!--<script src="../lib/morrisjs/morris.js"></script>
+  <script src="../lib/raphael/raphael.js"></script>
+  
+  <script src="../lib/flot/jquery.flot.js"></script>
+  <script src="../lib/flot/jquery.flot.resize.js"></script>
+  <script src="../lib/flot-spline/jquery.flot.spline.js"></script>
+  
+  <script src="../lib/jquery-knob/jquery.knob.js"></script>-->
+  
+  <script src="{% static 'pos/js/quirk.js'%}"></script>
+  
+  <script type="{% static 'pos/text/javascript'%}">
+  $(document).ready(function() {
+  
+    'use strict';
+  
+    $('#dataTable1').DataTable();
+    $('#dataTable2').DataTable();
+    
+    //$('#productorder').select2({closeOnSelect: false});
+    
+    $('#select1, #select2, #select3, #procuctorder').select2();
+    $("#select4").select2({ maximumSelectionLength: 2 });
+    $("#select5").select2({ minimumResultsForSearch: Infinity });
+    $("#select6").select2({ tags: true });
+    
+    //$(document).click(function(){
+     //  $("#procuctorder").focus();
+    //});
+   
+  
+  });
+  </script>
+  <!--<script src="../js/dashboard.js"></script>-->
+  
+  
+  
+  </body></html>

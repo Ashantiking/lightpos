@@ -1,0 +1,63 @@
+{% extends 'base.html' %}
+{% load static %}
+{% block title %}
+		 About Acheampong Inc.
+		{% endblock  %}
+
+	
+	
+		{% block content %}
+
+<!-- [ Main Content ] start -->
+<section class="pcoded-main-container">
+    <div class="pcoded-content">
+        <!-- [ breadcrumb ] start -->
+        <div class="page-header">
+            <div class="page-block">
+                <div class="row align-items-center">
+                    <div class="col-md-12">
+                        <div class="page-header-title">
+                            <h5 class="m-b-10">Delele Supplier</h5>
+                        </div>
+                        
+                    </div>
+                </div>
+            </div>
+        </div>
+        <!-- [ breadcrumb ] end -->
+        <!-- [ Main Content ] start -->
+            <!-- [ form-element ] start -->
+            <div class="col-sm-12">
+                <div class="card">
+                    <div class="card-header">
+                        <h5>PRODUCTS INFORMATION</h5>
+                    </div>
+                    <div class="card-body">
+						<div class="container">
+							<div class="section-title text-center">
+                            {% if user.is_authenticated %}
+						</div>
+						<h3>Delete: {{ product.product_name }} </h3>
+            <br/><br/>
+			<div class="from-group">
+            <form method="POST">
+                {%csrf_token %}
+                <h1  style="text-align: center;">ARE YOU SURE YOU WANT TO DELETE THIS PRODUCT</h1>
+                <button  class="btn btn-outline-danger">Delete</button>
+            </form>
+		</div>
+        <div class="btn-ber text-center">
+            <a type="button" class="btn btn-outline-primary" href="{% url 'product' %}">Back Home</a>
+          </div>
+    </div>
+</div>
+</div>
+</div>
+{% else %}
+<h3>You are not Login or Register </h3>
+<p>Please Login or Registrar </p>
+{% endif %}
+ 
+                            </div>
+                          
+		{% endblock %}

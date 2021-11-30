@@ -1,0 +1,76 @@
+{% extends 'base.html' %}
+{% load static %}
+{% block title %}
+		 About Acheampong Inc.
+		{% endblock  %}
+
+	
+	
+		{% block content %}
+<!-- [ Main Content ] start -->
+<section class="pcoded-main-container">
+    <div class="pcoded-content">
+        <!-- [ breadcrumb ] start -->
+        <div class="page-header">
+            <div class="page-block">
+                <div class="row align-items-center">
+                    <div class="col-md-12">
+                        <div class="page-header-title">
+                            <h5 class="m-b-10">Form Elements</h5>
+                        </div>
+                        <ul class="breadcrumb">
+                            <li class="breadcrumb-item"><a href="index.html"><i class="feather icon-home"></i></a></li>
+                            <li class="breadcrumb-item"><a href="#!">Form Components</a></li>
+                            <li class="breadcrumb-item"><a href="#!">Form Elements</a></li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <!-- [ breadcrumb ] end -->
+        <!-- [ Main Content ] start -->
+            <!-- [ form-element ] start -->
+            <div class="col-sm-12">
+                <div class="card">
+                    <div class="card-header">
+                        <h5>SUPPLIER INFORMATION</h5>
+                    </div>
+                    <div class="card-body">
+                        <div class="container">
+                            <div class="section-title text-center">
+                        <p>You are adding Products Under </p>
+                        <h3>{{ invoice.supplier_name }}</h3>
+                    </div>
+                    <table class="table">
+                        <thead class="table-dark ">
+                            <td>No. </td>
+                            <td>NAME OF PRODUCTS ORDER</td>
+                            <td>QUANTITY</td>
+                            <td>UNIT PRICE</td>
+                            <td>SELLING PRICE</td>
+                            <td>TOTAL</td>
+                        </thead>
+                              </table>
+                              <table class="table">
+                                {% for order in object_list %}
+                                <thead class="table-primary table table-bordered border-dark">
+                                    <td >{{ order.id }}</td>
+                                    <td >{{ order.product_name }}</td>
+                                    <td>{{ order.quantity }}</td>
+                                    <td>{{ order.unit_price }}</td>
+                                    <td>{{ order.selling_price }}</td>
+                                </thead>
+                                      </table>
+                                {% endfor %}
+                        </div>
+
+                    <div class="btn-ber text-center">
+                    <a type="button" class="btn btn-outline-primary" href="{% url 'add_order' %}">Add Product Here</a>
+                  </div>
+            </div>
+        </div>
+        </div>
+        </div>
+        </section>
+    </div>
+	{% endblock %}

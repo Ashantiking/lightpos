@@ -1,0 +1,117 @@
+
+	
+
+{% extends 'base.html' %}
+{% load static %}
+{% block title %}
+		 Purchase | 
+		{% endblock  %}
+
+
+		{% block content%}
+
+
+<body>
+    <header>
+        <div class="headerpanel">
+            <div class="logopanel">
+                <h1>
+                    <a href="./?lnk=home">Acheampong POS</a>
+                </h1>
+            </div>
+            <div class="headerbar">
+                <a id="menuToggle" class="menutoggle">
+                    <i class="fa fa-bars">
+                        ::before
+                    </i>
+                </a>
+                <div class="header-right">
+                    <ul class="headermenu">
+                        <li>
+                            <div class="btn-group" id="noticePanel">
+                                <button class="btn btn-notice alert-notice" data-toggle="dropdown">
+                                    <i class="fa fa-globe">
+                                        ::before
+                                        ::after
+                                    </i>
+                                </button>
+                                <div id="noticDropdown" class="dropdown-menu dm-notice pull-right">
+                                    <div role="tabpanel">
+                                        <ul class="nav nav-tab nav-justified" role="tablist">
+                                            <li class="active">
+                                                <a data-target="#notification" data-toggle="tab">Draft Sales 1</a>
+                                            </li>
+                                            <li >
+                                                <a data-target="#reminders" data-toggle="tab">Today's Sales</a>
+                                            </li>
+                                        </ul>
+                                        <div class="tab-content">
+                                            <div role="tabpanel" class="tab-panel activate" id="notification">
+                                                <ul class="list-group notice-list">
+                                                    <li class="list-group-item unread">
+                                                        <div class="row">
+                                                            <div class="col-xs-2">
+                                                                <i class="fa fa-edit"></i>
+                                                            </div>
+                                                            <div class="col-xs-10">
+                                                                <h5>
+                                                                    <a href="#"></a>
+                                                                </h5>
+                                                                <small>2021-08-22</small>
+                                                            </div>
+                                                        </div>
+                                                    </li>
+                                                </ul>
+                                                
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </li>
+
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </header>
+    <div class="contentpanel">
+        <div class="row">
+            <div class="col-md-12 col-lg-12 dash-left">
+                <div class="row">
+                    <div class="panel panel-inverse panel-site-traffic">
+                        <div class="panel-heading">
+                            <h4 class="panel-title">MANAGE PURCHASES ()</h4>
+                        </div>
+                        <div class="panel-body">
+                            {% if user.is_authenticated %}
+                            <font color="blue">This option helps you create/manage new products</font>
+                            <br>
+                            <br>
+                            <strong></strong>
+                            <div class="from-group">
+                                <form method="POST">
+                                    {%csrf_token %}
+                                    {{ form.as_p }}
+                                    <button class="get_btn hvr-bounce-to-top">+ADD</button>
+                                </form>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            {% else %}
+            <h3>You are not Login or Register </h3>
+            <p>Please Login or Registrar </p>
+            {% endif %}
+        </div>
+    </div> 
+            </section>
+        
+
+            <hr>
+            <hr>
+        
+   
+    {% endblock %}
+		

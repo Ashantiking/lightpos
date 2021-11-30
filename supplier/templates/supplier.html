@@ -1,0 +1,63 @@
+{% extends 'base.html' %}
+{% load static %}
+{% block title %}
+		 About Acheampong Inc.
+		{% endblock  %}
+
+	
+	
+		{% block content %}
+	
+
+<!-- [ Main Content ] start -->
+<section class="pcoded-main-container">
+    <div class="pcoded-content">
+        <!-- [ breadcrumb ] start -->
+        <div class="page-header">
+            <div class="page-block">
+                <div class="row align-items-center">
+                    <div class="col-md-12">
+                        <div class="page-header-title">
+                            <h5 class="m-b-10">Form Elements</h5>
+                        </div>
+                        <ul class="breadcrumb">
+                            <li class="breadcrumb-item"><a href="index.html"><i class="feather icon-home"></i></a></li>
+                            <li class="breadcrumb-item"><a href="#!">Form Components</a></li>
+                            <li class="breadcrumb-item"><a href="#!">Form Elements</a></li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <!-- [ breadcrumb ] end -->
+        <!-- [ Main Content ] start -->
+            <!-- [ form-element ] start -->
+            <div class="col-sm-12">
+                <div class="card">
+                    <div class="card-header">
+                        <h5>SUPPLIER INFORMATION</h5>
+                    </div>
+                    <div class="card-body">
+                        <table class="table">
+                            <thead class="table-dark ">
+                                <td>NAME OF SUPPLIER</td>
+                                <td>ADDRESS</td>
+                                <td>PHONE NUMBER</td>
+                                <td>EMAIL</td>
+                            </thead>
+                                  </table>
+                                  {% for supplier in object_list %}
+                                  <table class="table">
+                                    <thead class="table-primary table table-bordered border-dark">
+                                       <td >{{ supplier.supplier_name }}</td>
+                                        <td>{{ supplier.supplier_address }}</td>
+                                        <td>{{ supplier.supplier_phone }}</td>
+                                        <td>{{ supplier.supplier_email }}</td>
+                                        <button type="button" class="btn btn-outline-danger"><a href="{% url 'delete_supplier' supplier.pk %}">Delete</a> </button>
+                                       <button type="button" class="btn btn-outline-warning"><a href="{% url 'update_supplier' supplier.pk %}">Update</a> </button>
+                                    </thead>
+                                          </table>
+                                    {% endfor %}
+                            </div>
+                         
+							{% endblock %}
