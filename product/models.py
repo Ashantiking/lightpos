@@ -17,7 +17,10 @@ class Product(models.Model):
     product_selling_price = models.DecimalField(
         max_digits=10, decimal_places=2, default=0)
     supplier = models.ForeignKey(Supplier, on_delete=models.CASCADE)
-    product_expires = models.CharField(max_length=100)
+    product_expires = models.DateField(
+        auto_now_add=False, auto_now=False)
+    description = models.TextField(
+        max_length=3000, default='', blank=True, null=True)
     product_notes = models.CharField(max_length=255, blank=True, null=True)
     date_added = models.DateTimeField(auto_now_add=True)
 

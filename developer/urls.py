@@ -5,6 +5,6 @@ from . import views
 
 
 urlpatterns = [
-    path('', views.developer, name='developer'),
+    #path('', views.developer, name='developer'),
     path('receipt/', CompanyView.as_view(), name='developer'),
 ]
